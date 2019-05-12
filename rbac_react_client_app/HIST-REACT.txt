@@ -1,0 +1,160 @@
+    1  cd
+    2  pwd
+    3  mkdir PROJECTS
+    4  cd PROJECTS/
+    5  mkdir RAILS
+    6  cd RAILS/
+    7  mkdir  reservations
+    8  cd ..
+    9  touch PROJECTS_HINTS.txt
+   10  vim PROJECTS_HINTS.txt 
+   11  sudo apt install vim -y
+   12  exit
+   13  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+   14  echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
+   15  source ~/.bashrc
+   16  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+   17  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+   18  echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
+   19  source ~/.bashrc
+   20  mkdir -p "$(rbenv root)"/plugins
+   21  rbenv root
+   22  git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+   23  rbenv -v
+   24  exit
+   25  cd
+   26  ls -la
+   27  cd PROJECTS/
+   28  ls -la
+   29  df -h
+   30  sudo apt isntall bat -y
+   31  sudo apt install bat -y
+   32  batcat PROJECT-HINTS.txt 
+   33  ls -la
+   34  cd ..
+   35  ls -ld PROJECTS/
+   36  chmod -R 777 .
+   37  sudo chmod -R 777 .
+   38  cd PROJECTS/
+   39  ls -la
+   40  batcat  PROJECT-HINTS.txt 
+   41  less PROJECT-HINTS.txt 
+   42  sudo pat install less
+   43  sudo apt install less -y
+   44  less PROJECT-HINTS.txt 
+   45  sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev git -y
+   46  vim PROJECT-HINTS.txt 
+   47  rbenv install -l
+   48  pwd
+   49  . ~/.bashrc
+   50  rbenv -v
+   51  rbenv install -l
+   52  rbenv install 3.3.8
+   53  rbenv install --list-all
+   54  rbenv install --list-all | less
+   55  rbenv install 3.3.8
+   56  sudo apt isntall curl -y
+   57  sudo apt install curl -y
+   58  rbenv install 3.3.8
+   59  ruby -v
+   60  sudo apt install  libffi -y
+   61  sudo apt install -y libffi-dev libyaml-dev libssl-dev libreadline-dev zlib1g-dev build-essential -y
+   62  rbenv install 3.3.8
+   63  ruby -v
+   64  gem install bundler
+   65  gem -v
+   66  gem install bundle
+   67  gem install bundler
+   68  rbenv list
+   69  rbenv install -l
+   70  rbenv shows
+   71  rbenv show
+   72  rbenv versions
+   73  rbenv local
+   74  rbenv global
+   75  rbenv global 3.3.8
+   76  ruby -v
+   77  gem -v
+   78  gem install bundler
+   79  batcat PROJECT-HINTS.txt | less
+   80  exec $SHELL
+   81  ls -la
+   82  rm -r rbac_api_app
+   83  ls -la
+   84  rails new rbac_api_app --api -m rbac_api_template.rb
+   85  exit
+   86  pwd
+   87  cd PROJECTS/RAILS/
+   88  ls -la
+   89  cd RBAC_API_RAILS_REACT/
+   90  export PROMPT_DIRTRIM=1
+   91  cd rbac_client_app/
+   92  ls -la
+   93  cd ..
+   94  cd rbac_react_client_app/
+   95  ll
+   96  npm run dev
+   97  find . -iname api.j\*
+   98  vim src/api.js
+   99  npm run dev
+  100  vim src/api.js
+  101  npm run dev
+  102  vim src/api.js 
+  103  vim vite.config.mjs 
+  104  npm run dev
+  105  find . -iname Login.jsx
+  106  vim ./src/components/Login.jsx
+  107  vim package.json 
+  108  npm install react-router-dom
+  109  npm run dev
+  110  find . -iname main.jsx
+  111  find . -iname index.jsx
+  112  vim ./src/main.jsx
+  113  npm run dev
+  114  find . -type f -exec grep -inH 'String contains an invalid character' {} .
+  115  find . -type f -exec grep -inH 'String contains an invalid character' {} +
+  116  cd ..
+  117  cd RBAC_API_RAILS_REACT/
+  118  find . -type f -exec grep -inH 'String contains an invalid character' {} +
+  119  find . -type f -exec grep -inH 'String contains ' {} +
+  120  find . -type f -exec grep -inH 'String contains' {} +
+  121  find . -type f -exec grep -inH 'String' {} +
+  122  find . -type f -exec grep -inH 'String '  {} +
+  123  pwd
+  124  ls -la
+  125  cd rbac_react_client_app/
+  126  ls -la
+  127  alias ls="ls"
+  128  ls -la
+  129  vim src/components/Login.jsx 
+  130  npm run dev
+  131  find . -type f -exec grep -inH 'invalid character '  {} +
+  132  find . -type f -exec grep -inH 'an invalid character '  {} +
+  133  find . -type f -exec grep -inH 'an invalid character'  {} +
+  134  find . -type f -exec grep -inH 'invalid character'  {} +
+  135  find . -type f -exec grep -inH 'invalid character'  {} + | grep an
+  136  find . -type f -exec grep -inH 'invalid character'  {} + | grep an'
+  137  find . -type f -exec grep -inH 'invalid character'  {} + | grep 'an'
+  138  find . -type f -exec grep -inH 'invalid character'  {} + | grep 'contains'
+  139  find . -type f -exec grep -inH 'invalid character'  {} + | grep 'contains' | less
+  140  find . -type f -exec grep -nH onLogin
+  141  find . -type f -exec grep -nH onLogin {} +
+  142  vim src/components/Login.jsx 
+  143  npm run dev
+  144  vim src/components/Login.jsx 
+  145  npm run dev
+  146  vim src/components/Login.jsx 
+  147  npm run dev
+  148  find . -type f -iname \*.jsx -exec grep -inH 'htob' {} +
+  149  find . -type f -iname \*.jsx -exec grep -inH 'htop' {} +
+  150  find . -type f -iname \*.jsx -exec grep -inH 'atob' {} +
+  151  vim ./src/App.jsx
+  152  npm run dev
+  153  vim ./src/App.jsx
+  154  npm run dev
+  155  vim ./src/App.jsx
+  156  npm run dev
+  157  pwd
+  158  ls -la
+  159  history
+  160  history > HIST-REACT.txt

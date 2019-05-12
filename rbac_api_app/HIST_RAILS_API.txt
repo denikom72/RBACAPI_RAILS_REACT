@@ -1,0 +1,231 @@
+    1  cd
+    2  pwd
+    3  mkdir PROJECTS
+    4  cd PROJECTS/
+    5  mkdir RAILS
+    6  cd RAILS/
+    7  mkdir  reservations
+    8  cd ..
+    9  touch PROJECTS_HINTS.txt
+   10  vim PROJECTS_HINTS.txt 
+   11  sudo apt install vim -y
+   12  exit
+   13  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+   14  echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
+   15  source ~/.bashrc
+   16  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+   17  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+   18  echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
+   19  source ~/.bashrc
+   20  mkdir -p "$(rbenv root)"/plugins
+   21  rbenv root
+   22  git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+   23  rbenv -v
+   24  exit
+   25  cd
+   26  ls -la
+   27  cd PROJECTS/
+   28  ls -la
+   29  df -h
+   30  sudo apt isntall bat -y
+   31  sudo apt install bat -y
+   32  batcat PROJECT-HINTS.txt 
+   33  ls -la
+   34  cd ..
+   35  ls -ld PROJECTS/
+   36  chmod -R 777 .
+   37  sudo chmod -R 777 .
+   38  cd PROJECTS/
+   39  ls -la
+   40  batcat  PROJECT-HINTS.txt 
+   41  less PROJECT-HINTS.txt 
+   42  sudo pat install less
+   43  sudo apt install less -y
+   44  less PROJECT-HINTS.txt 
+   45  sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev git -y
+   46  vim PROJECT-HINTS.txt 
+   47  rbenv install -l
+   48  pwd
+   49  . ~/.bashrc
+   50  rbenv -v
+   51  rbenv install -l
+   52  rbenv install 3.3.8
+   53  rbenv install --list-all
+   54  rbenv install --list-all | less
+   55  rbenv install 3.3.8
+   56  sudo apt isntall curl -y
+   57  sudo apt install curl -y
+   58  rbenv install 3.3.8
+   59  ruby -v
+   60  sudo apt install  libffi -y
+   61  sudo apt install -y libffi-dev libyaml-dev libssl-dev libreadline-dev zlib1g-dev build-essential -y
+   62  rbenv install 3.3.8
+   63  ruby -v
+   64  gem install bundler
+   65  gem -v
+   66  gem install bundle
+   67  gem install bundler
+   68  rbenv list
+   69  rbenv install -l
+   70  rbenv shows
+   71  rbenv show
+   72  rbenv versions
+   73  rbenv local
+   74  rbenv global
+   75  rbenv global 3.3.8
+   76  ruby -v
+   77  gem -v
+   78  gem install bundler
+   79  batcat PROJECT-HINTS.txt | less
+   80  exec $SHELL
+   81  gem install rails
+   82  pwd
+   83  ls -la
+   84  cd RAILS/
+   85  ls -la
+   86  cd RBAC_API_RAILS_REACT/
+   87  ls -la
+   88  cd rbac_api_app
+   89  ls -la
+   90  cd ..
+   91  vim rbac_api_template.rb 
+   92  ls -la
+   93  rm -r rbac_api_app
+   94  cat ../../PROJECT-HINTS.txt | grep 'rails new '
+   95  rails new rbac_api_app --api -m rbac_api_template.rb
+   96  ls -la
+   97  cd rbac_api_
+   98  cd rbac_api_app/
+   99  ll
+  100  vim Gemfile
+  101  bundle install
+  102  bundle fund
+  103  rails generate doorkeeper:install
+  104  rails generate doorkeeper:migration
+  105  rails db:migrate
+  106  cd ..
+  107  vim rbac_api_template.rb 
+  108  rm -r rbac_api_app
+  109  rails new rbac_api_app --api -m rbac_api_template.rb
+  110  ls -la
+  111  cd rbac_api_app/
+  112  ls -la
+  113  rails db:migrate
+  114  rails db:seed
+  115  bundle install
+  116  rails s
+  117  rails s -b 0.0.0.0
+  118  history
+  119  cd ..
+  120  vim rbac_api_template.rb 
+  121  ls -la
+  122  cd rbac_react_client_app/
+  123  ls -la
+  124  npm install
+  125  sudo apt install npm -y
+  126  npm install 
+  127  ls -laR
+  128  pwd
+  129  whoami
+  130  cd ..
+  131  ls -la
+  132  cd ..
+  133  ls -la
+  134  pwd
+  135  cd ..
+  136  ls -la
+  137  cd ..
+  138  ls -la
+  139  chown -R projects:projects . 
+  140  sudo chown -R projects:projects . 
+  141  cd PROJECTS/RAILS/RBAC_API_RAILS_REACT/rbac_react_client_app/
+  142  ls -la
+  143  npm install
+  144  npm fund
+  145  npm install
+  146  npm audit fix --force
+  147  PROMPT_DIRTRIM=1
+  148  npm run dev
+  149  cd ..
+  150  chmod -R 777 .
+  151  cd rbac_react_client_app/
+  152  npm run dev
+  153  ls -la
+  154  cd ..
+  155  find . -iname vite.config.\*
+  156  cd ./RBAC_API_RAILS_REACT/rbac_react_client_app/
+  157  cp vite.config.js vite.config.mjs 
+  158  vim vite.config.mjs 
+  159  npm install
+  160  npm run dev
+  161  mv vite.config.js vite.config.js.BAK
+  162  npm install
+  163  npm run dev
+  164  sudo apt install nvm -y
+  165  error when starting dev server:
+  166  TypeError: crypto.hash is not a function
+  167  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  168  export NVM_DIR="$HOME/.nvm"
+  169  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  170  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  171  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
+  172  node -v
+  173  nvm install 20
+  174  node -v
+  175  nvm list
+  176  nvm use 20
+  177  npm -v
+  178  npm install
+  179  npm run dev
+  180  HOST=0.0.0.0 npm run dev
+  181  HOST=0.0.0.0 PORT=3001 npm run dev
+  182  vim vite.config.mjs 
+  183  npm run dev
+  184  history
+  185  cd ..
+  186  ls -la
+  187  alias ls="ls"
+  188  ls -la
+  189  cd RBAC_API_RAILS_REACT/
+  190  ls -la
+  191  cd rbac_api_app/
+  192* 
+  193  rails s -b 0.0.0.0
+  194  ps -elf | grep rails
+  195  ps -elf
+  196  ss -tuln
+  197  sudo apt install net-tools -y
+  198  netstat -tulpena | grep LIST
+  199  sudo apt install ssh -y
+  200  service ssh start
+  201  sudo service ssh start
+  202  docker ps
+  203  service start psql
+  204  rails s -b 0.0.0.0
+  205  kill -9 39988
+  206  ps -elf
+  207  rails s -b 0.0.0.0
+  208  rails db:migrate
+  209  rails db:seed
+  210  rails s -b 0.0.0.0
+  211  ls -la db/
+  212  cat db/seeds.rb 
+  213  rails db:migrate
+  214  rails db:seeds
+  215  rails db:seed
+  216  rails db:seed --trace
+  217  rails s -b 0.0.0.0
+  218  bin/rails db:drop db:create db:migrate db:seed
+  219  rails s -b 0.0.0.0
+  220  vim config/initializers/doorkeeper.rb 
+  221  RAILS_ENV=development rails s -b 0.0.0.0
+  222  vim config/initializers/doorkeeper.rb 
+  223  RAILS_ENV=development rails s -b 0.0.0.0
+  224  vim Gemfile
+  225  bunlde install
+  226  bundle install
+  227  bundle fund
+  228  vim config/initializers/cors.rb 
+  229  RAILS_ENV=development rails s -b 0.0.0.0
+  230  history 
+  231  history > HIST_RAILS_API.txt
