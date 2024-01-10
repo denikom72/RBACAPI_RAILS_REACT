@@ -338,4 +338,329 @@ npm run dev  # or npm run build for production
 # Access Swagger UI
 http://localhost:3000/api-docs
 ```
+......
+
+ **RSpec helper to auto-generate JWT tokens**
+ **Seed script to create Doorkeeper client + Admin user automatically**
+ **Docker setup for Rails + PostgreSQL + RSwag**
+ **Swagger UI + JWT token authorization**
+ **How to run everything in Docker**
+ **All commands in a clean structure**
+
+---
+
+Update for 2024, but version uncompitabilities are possible
+
+#  RBAC Rails API with Doorkeeper, JWT, and Swagger (RSwag)
+
+**Rails API** with:
+
+*  **Role-Based Access Control (RBAC)**
+*  **OAuth2 Authentication (Doorkeeper)**
+*  **JWT tokens**
+*  **React frontend integration**
+*  **Swagger UI via RSwag for API documentation & testing**
+*  **Dockerized environment**
+
+---
+
+##  System Dependencies
+
+* **Ruby** ≥ 3.3
+* **Rails** ≥ 7.x
+* **PostgreSQL**
+* **Node.js** ≥ 20
+* **Docker** & **Docker Compose** (if using Docker)
+* **Bundler** & **Yarn**
+
+---
+
+## ⚙️ Installation (Local)
+
+Clone the repo:
+
+```bash
+git clone https://github.com/your-org/rbac-rails-api.git
+cd rbac-rails-api
+```
+
+Install Ruby gems:
+
+```bash
+bundle install
+```
+
+Install JS dependencies (for Swagger):
+
+```bash
+npm install --prefix frontend
+```
+
+---
+
+##  Database Setup
+
+Create & migrate DB:
+
+```bash
+rails db:create db:migrate
+```
+
+---
+
+##  OAuth & Admin Setup (Auto)
+
+Run:
+
+```bash
+rails db:seed
+```
+
+This will:
+
+* Create **Admin role & user**:
+
+  * Email: `admin@example.com`
+  * Password: `password`
+* Create **Doorkeeper app**:
+
+  * `client_id` and `client_secret` printed in console
+
+### Check UID and Secret later:
+
+```ruby
+Doorkeeper::Application.pluck(:uid, :secret)
+```
+
+---
+
+## 🛠 Configuration Files
+
+Set environment variables in `.env`:
+
+```
+OAUTH_CLIENT_ID=TestClient
+OAUTH_CLIENT_SECRET=YOUR_SECRET
+```
+
+---
+
+##  Generate JWT Token via API
+
+```
+curl -X POST http://localhost:3000/oauth/token \
+  -d 'grant_type=password' \
+  -d 'username=admin@example.com' \
+  -d 'password=password' \
+  -d 'client_id=TestClient' \
+  -d 'client_secret=YOUR_SECRET'
+```
+
+---
+
+##  React Integration Example
+
+`frontend/src/api.js`:
+
+```js
+import axios from 'axios'
+
+const API = axios.create({ baseURL: 'http://localhost:3000' })
+
+export async function login(username, password) {
+  return API.post('/oauth/token', new URLSearchParams({
+    grant_type: 'password',
+    username,
+    password,
+    client_id: process.env.REACT_APP_CLIENT_ID,
+    client_secret: process.env.REACT_APP_CLIENT_SECRET
+  }))
+}
+```
+
+---
+
+##  Swagger & RSwag Setup
+
+Install:
+
+```bash
+bundle add rswag-api rswag-ui rswag-specs
+rails generate rswag:install
+```
+
+Add in `routes.rb`:
+
+```ruby
+mount Rswag::Ui::Engine => '/api-docs'
+mount Rswag::Api::Engine => '/api-docs'
+```
+
+### Add JWT Security Scheme in `swagger_helper.rb`:
+
+```ruby
+config.swagger_docs = {
+  'v1/swagger.yaml' => {
+    openapi: '3.0.1',
+    info: { title: 'RBAC API', version: 'v1' },
+    components: {
+      securitySchemes: {
+        bearer_auth: {
+          type: :http,
+          scheme: :bearer,
+          bearerFormat: :JWT
+        }
+      }
+    },
+    security: [ bearer_auth: [] ],
+    paths: {}
+  }
+}
+```
+
+---
+
+##  Example RSwag Spec with JWT
+
+`spec/integration/managed_users_spec.rb`:
+
+```ruby
+require 'swagger_helper'
+
+RSpec.describe 'Managed Users API', type: :request do
+  path '/api/managed_users' do
+    get 'List users' do
+      tags 'ManagedUsers'
+      security [ bearer_auth: [] ]
+      produces 'application/json'
+
+      response '200', 'OK' do
+        let(:Authorization) { "Bearer #{generate_token_for(:admin)}" }
+        run_test!
+      end
+    end
+  end
+end
+```
+
+---
+
+##  RSpec Helper for JWT
+
+`spec/support/auth_helpers.rb`:
+
+```ruby
+module AuthHelpers
+  def generate_token_for(role = :admin)
+    user = User.find_by(role: Role.find_by(name: role.to_s.capitalize))
+    access_token = Doorkeeper::AccessToken.create!(
+      resource_owner_id: user.id,
+      application_id: Doorkeeper::Application.first.id,
+      scopes: ''
+    )
+    access_token.token
+  end
+end
+
+RSpec.configure do |config|
+  config.include AuthHelpers
+end
+```
+
+---
+
+## ✅ Run Tests & Generate Swagger Docs
+
+Run all specs:
+
+```bash
+bundle exec rspec
+```
+
+Generate Swagger docs:
+
+```bash
+RAILS_ENV=test rake rswag:specs:swaggerize
+```
+
+Swagger UI:
+
+```
+http://localhost:3000/api-docs
+```
+
+Click **Authorize**, enter `Bearer <token>`.
+
+---
+
+## 🐳 Docker Setup
+
+`Dockerfile`:
+
+```dockerfile
+FROM ruby:3.3
+
+WORKDIR /app
+COPY Gemfile* ./
+RUN bundle install
+
+COPY . .
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
+```
+
+`docker-compose.yml`:
+
+```yaml
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: bash -c "rails db:prepare && rails s -b 0.0.0.0"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/postgres
+```
+
+Run:
+
+```bash
+docker-compose up --build
+```
+
+---
+
+##  Deployment Notes
+
+* Set `RAILS_MASTER_KEY` for production.
+* Precompile assets: `rails assets:precompile`.
+* Use `docker-compose -f docker-compose.prod.yml up` for production.
+
+---
+
+###  This README now includes:
+
+✔ Full setup
+✔ OAuth + JWT generation
+✔ RSwag integration & JWT in Swagger
+✔ Auto-seed script
+✔ RSpec JWT helper
+✔ Docker setup
+✔ Testing & docs generation
+✔ React integration
+
+
+
 
